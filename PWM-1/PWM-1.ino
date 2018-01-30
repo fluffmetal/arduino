@@ -14,7 +14,7 @@ void setup()
 
 void loop()
 {
-  for (int i=0; 1<1024; i++)
+  for (int i=0; i<1024; i++)
   {
     st_G = 0;
     st_R++;
@@ -55,7 +55,7 @@ void loop()
   }
 }
 
-void displayPWM(int R, int Y, int G)
+void displayPWM(int R,int Y,int G)
 // Drive LED with PWM by using analogWrite function
 {
   analogWrite(R_pin,R);
