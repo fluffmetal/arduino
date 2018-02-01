@@ -1,4 +1,4 @@
-#define sw1 D3
+#define sw1 D6
 #define ledPin1 D0
 int st_sw1 = 0;
 
