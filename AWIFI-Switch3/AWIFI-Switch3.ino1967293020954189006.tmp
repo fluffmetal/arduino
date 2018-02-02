@@ -1,7 +1,7 @@
-#include <Adafruit_NeoPixel.h>
-#define NUMSLEDs 2
-#define PINSLEDs 10
-Adafruit_NeoPixel SLEDs = Adafruit_NeoPixel (NUMSLEDs,PINSLEDs,NEO_RGB + NEO_KHZ800);
+//#include <Adafruit_NeoPixel.h>
+//#define NUMSLEDs 2
+//#define PINSLEDs 10
+//Adafruit_NeoPixel SLEDs = Adafruit_NeoPixel (NUMSLEDs,PINSLEDs,NEO_RGB + NEO_KHZ800);
 //********************************
 #define sw1 D3
 #define sw2 D4
@@ -17,8 +17,8 @@ int last_st_sw2 = 1;
 void setup()
 {
   pinMode(10,OUTPUT);
-  SLEDs.begin();
-  SLEDs.show();
+//  SLEDs.begin();
+//  SLEDs.show();
   pinMode(ledPin1,OUTPUT);
   pinMode(ledPin2,OUTPUT);
   pinMode(sw1,INPUT);
