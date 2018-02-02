@@ -30,16 +30,16 @@ void loop()
   st_sw1 = digitalRead(sw1);
   if ((st_sw1 == 0) && (last_st_sw1 == 1))
   {
-    st_1 = ~st_1;
+    st_sw1 = ~st_sw1;
     digitalWrite(ledPin1,st_lp1);
     delay(250);
   }
   last_st_sw1 = st_sw1;
 
   st_sw2 = digitalRead(sw2);
-  if ((st_sw2 == 1_ && (last_st_sw2 == 0))
+  if ((st_sw2 == 1) && (last_st_sw2 == 0))
   {
-    st_2 = ~st_2;
+    st_sw2 = ~st_sw2;
     digitalWrite(ledPin2,st_lp2);
     delay(250);
   }
