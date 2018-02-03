@@ -239,7 +239,7 @@ void sing(int s)
   song = s;
   if (song == 2)
   {
-    Serial.println(" 'Underworld Theme'");
+    //Serial.println(" 'Underworld Theme'");
     int size = sizeof(underworld_melody) / sizeof(int);
     for (int thisNote = 0; thisNote < size; thisNote++)
     {
@@ -260,7 +260,7 @@ void sing(int s)
     }
   } else
   {
-    Serial.println(" 'Mario Theme'");
+    //Serial.println(" 'Mario Theme'");
     int size = sizeof(melody) / sizeof(int);
     for (int thisNote = 0; thisNote < size; thisNote++)
     {
