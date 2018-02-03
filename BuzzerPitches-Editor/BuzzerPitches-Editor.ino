@@ -220,6 +220,7 @@ int underworld_tempo[] =
 
 void setup()
 {
+  sing(1);
   tone(D8, OUTPUT);
   pinMode(D7, OUTPUT); //led indicator when singing a note
 }
@@ -227,9 +228,9 @@ void setup()
 void loop()
 {
   //sing the tunes
-  sing(1);
-  sing(1);
-  sing(2);
+  //sing(1);
+  //sing(1);
+  //sing(2);
 }
 int song = 0;
 
