@@ -94,18 +94,13 @@
 
 /*
   Melody
-
   Plays a melody
-
   circuit:
   - 8 ohm speaker on digital pin D8
-
   created 21 Jan 2010
   modified 30 Aug 2011
   by Tom Igoe
-
   This example code is in the public domain.
-
   http://www.arduino.cc/en/Tutorial/Tone
 */
 
@@ -283,7 +278,7 @@ void sing(int s)
   }
 }
 
-void buzz(int targetPin, long frequency, long length)
+void led(int targetPin, long frequency, long length)
 {
   digitalWrite(D7, HIGH);
   long delayValue = 1000000 / frequency / 2; // calculate the delay value between transitions
