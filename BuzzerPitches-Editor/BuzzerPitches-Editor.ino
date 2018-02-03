@@ -220,7 +220,6 @@ int underworld_tempo[] =
 
 void setup()
 {
-  sing(1);
   tone(D8, OUTPUT);
   pinMode(D7, OUTPUT); //led indicator when singing a note
 }
@@ -228,9 +227,9 @@ void setup()
 void loop()
 {
   //sing the tunes
-  //sing(1);
-  //sing(1);
-  //sing(2);
+  sing(1);
+  sing(1);
+  sing(2);
 }
 int song = 0;
 
@@ -249,7 +248,7 @@ void sing(int s)
       //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
       int noteDuration = 1000 / underworld_tempo[thisNote];
 
-      buzz(melodyPin, underworld_melody[thisNote], noteDuration);
+      tone(melodyPin, underworld_melody[thisNote], noteDuration);
 
       // to distinguish the notes, set a minimum time between them.
       // the note's duration + 30% seems to work well:
@@ -257,7 +256,7 @@ void sing(int s)
       delay(pauseBetweenNotes);
 
       // stop the tone playing:
-      buzz(melodyPin, 0, noteDuration);
+      noTone(melodyPin);
     }
   } else
   {
@@ -271,7 +270,7 @@ void sing(int s)
       //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
       int noteDuration = 1000 / noteDurations[thisNote];
 
-      buzz(melodyPin, melody[thisNote], noteDuration);
+      tone(melodyPin, melody[thisNote], noteDuration);
 
       // to distinguish the notes, set a minimum time between them.
       // the note's duration + 30% seems to work well:
@@ -279,7 +278,7 @@ void sing(int s)
       delay(pauseBetweenNotes);
 
       // stop the tone playing:
-      buzz(melodyPin, 0, noteDuration);
+      noTone(melodyPin);
     }
   }
 }
