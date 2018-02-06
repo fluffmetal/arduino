@@ -1,20 +1,7 @@
-/*
-  Arduino Mario Bros Tunes
-  With Piezo Buzzer and PWM
-
-  Connect the positive side of the Buzzer to pin 3,
-  then the negative side to a 1k ohm resistor. Connect
-  the other side of the 1 k ohm resistor to
-  ground(GND) pin on the Arduino.
-
-  by: Dipto Pratyaksa
-  last updated: 31/3/13
-*/
-
 /*************************************************
  * Public Constants
  *************************************************/
-
+// pitches.h
 #define NOTE_B0  31
 #define NOTE_C1  33
 #define NOTE_CS1 35
@@ -105,28 +92,62 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
+/*
+  Melody
+  Plays a melody
+  circuit:
+  - 8 ohm speaker on digital pin D8
+  created 21 Jan 2010
+  modified 30 Aug 2011
+  by Tom Igoe
+  This example code is in the public domain.
+  http://www.arduino.cc/en/Tutorial/Tone
+*/
+
+// #include "pitches.h"
 #define melodyPin D8
-//Mario main theme melody
+
+// Mario main theme melody
 int melody[] =
 {
-  NOTE_E7, NOTE_E7, 0, NOTE_E7, 0, NOTE_C7, NOTE_E7, 0, NOTE_G7, 0, 0,  0, NOTE_G6, 0, 0, 0, NOTE_C7, 0, 0, NOTE_G6, 0, 0, NOTE_E6, 0, 0, NOTE_A6, 0, NOTE_B6,
-  0, NOTE_AS6, NOTE_A6, 0, NOTE_G6, NOTE_E7, NOTE_G7, NOTE_A7, 0, NOTE_F7, NOTE_G7, 0, NOTE_E7, 0, NOTE_C7, NOTE_D7, NOTE_B6, 0, 0, NOTE_C7, 0, 0, NOTE_G6, 0, 0, NOTE_E6, 0, 0, NOTE_A6, 0, NOTE_B6, 0, NOTE_AS6, NOTE_A6, 0,
+  NOTE_E7, NOTE_E7, 0, NOTE_E7, 
+  0, NOTE_C7, NOTE_E7, 0,
+  NOTE_G7, 0, 0,  0,
+  NOTE_G6, 0, 0, 0, 
 
-  NOTE_G6, NOTE_E7, NOTE_G7,
-  NOTE_A7, 0, NOTE_F7, NOTE_G7,
-  0, NOTE_E7, 0, NOTE_C7,
+  NOTE_C7, 0, 0, NOTE_G6, 
+  0, 0, NOTE_E6, 0, 
+  0, NOTE_A6, 0, NOTE_B6, 
+  0, NOTE_AS6, NOTE_A6, 0, 
+
+  NOTE_G6, NOTE_E7, NOTE_G7, 
+  NOTE_A7, 0, NOTE_F7, NOTE_G7, 
+  0, NOTE_E7, 0,NOTE_C7, 
+  NOTE_D7, NOTE_B6, 0, 0,
+
+  NOTE_C7, 0, 0, NOTE_G6, 
+  0, 0, NOTE_E6, 0, 
+  0, NOTE_A6, 0, NOTE_B6, 
+  0, NOTE_AS6, NOTE_A6, 0, 
+
+  NOTE_G6, NOTE_E7, NOTE_G7, 
+  NOTE_A7, 0, NOTE_F7, NOTE_G7, 
+  0, NOTE_E7, 0,NOTE_C7, 
   NOTE_D7, NOTE_B6, 0, 0
 };
 
-//Mario main them tempo
-int tempo[] =
+// note durations: 4 = quarter note, 8 = eighth note, etc.:
+int noteDurations[] =
 {
-  12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+  12, 12, 12, 12, 
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12, 
 
   12, 12, 12, 12,
-  12, 12, 12, 12,
-  12, 12, 12, 12,
-  12, 12, 12, 12,
+  12, 12, 12, 12, 
+  12, 12, 12, 12, 
+  12, 12, 12, 12, 
 
   9, 9, 9,
   12, 12, 12, 12,
@@ -192,17 +213,17 @@ int underworld_tempo[] =
   3, 3, 3
 };
 
-void setup(void)
+void setup()
 {
-  pinMode(D8, OUTPUT); //buzzer
+  tone(D8, OUTPUT);
   pinMode(D7, OUTPUT); //led indicator when singing a note
 }
 
 void loop()
 {
   //sing the tunes
-//  sing(1);
-//  sing(1);
+  sing(1);
+  sing(1);
   sing(2);
 }
 int song = 0;
@@ -213,17 +234,16 @@ void sing(int s)
   song = s;
   if (song == 2)
   {
-    Serial.println(" 'Underworld Theme'");
+    //Serial.println(" 'Underworld Theme'");
     int size = sizeof(underworld_melody) / sizeof(int);
     for (int thisNote = 0; thisNote < size; thisNote++)
     {
-
       // to calculate the note duration, take one second
       // divided by the note type.
       //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
       int noteDuration = 1000 / underworld_tempo[thisNote];
 
-      buzz(melodyPin, underworld_melody[thisNote], noteDuration);
+      tone(melodyPin, underworld_melody[thisNote], noteDuration);
 
       // to distinguish the notes, set a minimum time between them.
       // the note's duration + 30% seems to work well:
@@ -231,11 +251,11 @@ void sing(int s)
       delay(pauseBetweenNotes);
 
       // stop the tone playing:
-      buzz(melodyPin, 0, noteDuration);
+      noTone(melodyPin);
     }
   } else
   {
-    Serial.println(" 'Mario Theme'");
+    //Serial.println(" 'Mario Theme'");
     int size = sizeof(melody) / sizeof(int);
     for (int thisNote = 0; thisNote < size; thisNote++)
     {
@@ -243,9 +263,9 @@ void sing(int s)
       // to calculate the note duration, take one second
       // divided by the note type.
       //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
-      int noteDuration = 1000 / tempo[thisNote];
+      int noteDuration = 1000 / noteDurations[thisNote];
 
-      buzz(melodyPin, melody[thisNote], noteDuration);
+      tone(melodyPin, melody[thisNote], noteDuration);
 
       // to distinguish the notes, set a minimum time between them.
       // the note's duration + 30% seems to work well:
@@ -253,12 +273,12 @@ void sing(int s)
       delay(pauseBetweenNotes);
 
       // stop the tone playing:
-      buzz(melodyPin, 0, noteDuration);
+      noTone(melodyPin);
     }
   }
 }
 
-void buzz(int targetPin, long frequency, long length)
+void led(int targetPin, long frequency, long length)
 {
   digitalWrite(D7, HIGH);
   long delayValue = 1000000 / frequency / 2; // calculate the delay value between transitions
