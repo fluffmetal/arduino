@@ -3,7 +3,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #define OLED_RESET -1
-Adafruit_SSD1306 display(OLED_RESET);
+Adafruit_SSD1306 OLED(OLED_RESET);
 
 void setup()
 {
@@ -14,13 +14,13 @@ void setup()
 
 void loop()
 {
-  display.clearDisplay();
-  display.setTextColor(WHITE);
-  display.setCursor(0,0);
-  display.setTextSize(1);
-  display.printIn("Size1");
-  display.serCursor(35,20);
-  display.setTextSize(2);
-  display.printIn("Size2");
-  display.display();
+  OLED.clearDisplay();
+  OLED.setTextColor(WHITE);
+  OLED.setCursor(0,0);
+  OLED.setTextSize(1);
+  OLED.println("Size1");
+  OLED.setCursor(35,18);
+  OLED.setTextSize(2);
+  OLED.println("Size2");
+  OLED.display();
 }
