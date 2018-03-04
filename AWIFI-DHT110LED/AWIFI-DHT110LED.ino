@@ -1,4 +1,5 @@
-#include <DHT.h>
+//#include "DHT.h"
+#include <SimpleDHT.h>
 #include <Wire.h>
 #include <SPI.h>
 #include <Adafruit_GFX.h>
@@ -7,7 +8,7 @@
 Adafruit_SSD1306 OLED(OLED_RESET);
 
 #define DHTTYPE DHT11
-#define DHTPIN D4
+#define DHTPIN  D4
 DHT dht(DHTPIN, DHTTYPE, 15);
 
 void setup()
@@ -32,7 +33,7 @@ void loop()
     OLED.setCursor(0, 0);
     OLED.setTextSize(3);
     OLED.println(String("H:") + String(h, 0) + " %");
-    OLED.setCursor(0 ,30);
+    OLED.setCursor(0 , 30);
     OLED.print(String("T:") + String(t, 0) + " ");
     OLED.write(247);
     OLED.print("C");
