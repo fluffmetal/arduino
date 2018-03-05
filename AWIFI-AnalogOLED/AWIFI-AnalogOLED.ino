@@ -12,8 +12,9 @@ void setup()
 
 void loop()
 {
-  OLED.clearDisplay();        
-  OLED.setTextColor(WHITE);   // Set display color as white
+  OLED.clearDisplay();
+  OLED.fillScreen(WHITE);     
+  OLED.setTextColor(INVERSE);   // Set display color as white
   OLED.setCursor(10, 0);      // Set start position of display
   OLED.setTextSize(2);        // Set text size x2
   OLED.println("Read ADC");   // Show title message
