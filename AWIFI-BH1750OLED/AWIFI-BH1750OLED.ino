@@ -22,11 +22,11 @@ void loop()
     val = ((buff[0] << 8) | buff[1]) / 1.2;  // Light density in Lux
     OLED.clearDisplay();
     OLED.setTextColor(WHITE);
-    OLED.setCursor(0, 0);
-    OLED.setTextSize(3);
+    OLED.setCursor(15, 0);
+    OLED.setTextSize(2);
     OLED.println("BH1750");
-    OLED.setCursor(0, 35);
-    OLED.println(String(val) + " lx");
+    OLED.setCursor(25, 15);
+    OLED.println(String(val) + " lux");
     OLED.display();
   }
   delay(150);
