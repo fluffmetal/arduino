@@ -14,7 +14,7 @@ void setup()
 
 void loop()
 {
-  unit16_t val = 0;
+  uint16_t val = 0;
   BH1750_Init(BH1750address);
   delay(200);
   if (2 == BH1750_Read(BH1750address))
@@ -30,5 +30,24 @@ void loop()
     OLED.display();
   }
   delay(150);
+}
+int BH1750_Read(int address)  // Reading BH1750
+{
+  int i = 0;
+  Wire.beginTransmission(address);
+  Wire.requestFrom(address, 2);
+  while (Wire.available())
+  {
+    buff[i] = Wire.read(); // recive one byte
+    i++;
+  }
+  Wire.endTransmission();
+  return i;
+}
+void BH1750_Init(int address)  // Initial BH1750
+{
+  Wire.beginTransmission(address);
+  Wire.write(0x10);  // lx resolution 120ms
+  Wire.endTransmission();
 }
 
