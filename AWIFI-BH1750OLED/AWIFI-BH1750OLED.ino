@@ -31,6 +31,7 @@ void loop()
   }
   delay(150);
 }
+
 int BH1750_Read(int address)  // Reading BH1750
 {
   int i = 0;
@@ -44,6 +45,7 @@ int BH1750_Read(int address)  // Reading BH1750
   Wire.endTransmission();
   return i;
 }
+
 void BH1750_Init(int address)  // Initial BH1750
 {
   Wire.beginTransmission(address);
